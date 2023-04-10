@@ -5,7 +5,7 @@ import User from "../mongoDB/models/users.js"
 const getAllUser = async(req,res)=>{};
 const createUser = async(req,res)=>{};
 const deleteUser = async(req,res)=>{};
-const updateUser = async(req,res)=>{};
+
 
 
 export {
