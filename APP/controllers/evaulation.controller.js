@@ -1,16 +1,10 @@
-import mongoose from "mongoose";
-import Evaluation from "../mongoDB/models/evaluation.js";
-import User from "../mongoDB/models/users.js"
+const mongoose = require("mongoose");
+const Evaluation = require( "../mongoDB/models/evaluation.js");
+const User = require( "../mongoDB/models/users.js");
 
-const getAllEvalution = async(req,res)=>{};
-const createEvalution = async(req,res)=>{};
-const deleteEvalution = async(req,res)=>{};
-const updateEvalution = async(req,res)=>{};
+exports.getAllEvalution = async(req,res)=>{};
+exports.createEvalution = async(req,res)=>{};
+exports.deleteEvalution = async(req,res)=>{};
+exports.updateEvalution = async(req,res)=>{};
 
 
-export {
-    getAllEvalution,
-    createEvalution,
-    deleteEvalution,
-    updateEvalution,
-};
