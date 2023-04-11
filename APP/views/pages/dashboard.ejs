@@ -1,0 +1,12 @@
+<%- include('../partials/header')-%>  
+  <title>Dashboard</title>
+</head>
+<body>
+  <div class="text-center center-div mt-5">
+    <div class="container w-25 boder py-5 mt-5" >
+        <h3> Welcom to Express Dashboard</h3>
+        <h5><%= locals.user ? user:"User" %></h5>
+        <a href="/user/logout">Logout</a>
+    </div>
+</div>
+<%- include('../partials/footer')-%>
