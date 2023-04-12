@@ -8,7 +8,7 @@ const session = require( 'express-session');
 const {v4:uuidv4} = require('uuid');
 const  userRouter = require('./routers/user.router.js')
 const cookieParser = require("cookie-parser");
-
+const authentificate = require("./middleware/authentification.js")
 
 dotenv.config()
 const port = 8080 || port.env.PORT;
@@ -37,8 +37,16 @@ app.use(
       })
     );
 app.use('/user',userRouter);
-app.get('/',(req,res)=>{
+
+app.get('/', authentificate.isNotAuthenticated, (req,res)=>{
     res.render('pages/login');
+})
+app.get("/login", authentificate.isNotAuthenticated, (req, res) => {
+  res.render("pages/login");
+});
+app.get('/dashboard', authentificate.isAuthenticated, (req,res)=>{
+  console.log(`dashboard ${req.session.isAuthenticated}`)
+  res.render('pages/dashboard',{user:req.session.user})
 })
 
 const startServer = async () =>{

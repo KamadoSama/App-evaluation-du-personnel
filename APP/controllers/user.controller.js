@@ -39,9 +39,10 @@ exports.loginUser = (req,res)=>{
                 bcrypt.compare(user.password, req.body.password)
                     .then(valid=>{
                         
-                        console.log(req.session)
+                        console.log(req.session);
+                        req.session.isAuthenticated = true;
                         req.session.user= req.body.identifiant;
-                        res.redirect('/user/dashboard');
+                        res.redirect('/dashboard');
                     })
                     .catch(error=>{
                         console.log(error)
@@ -52,23 +53,15 @@ exports.loginUser = (req,res)=>{
         
 };
 exports.logoutUser = (req,res)=>{
-    req.session.destroy(function(err){
-        if(err){
-            console.log(err)
-            res.send('Error')
-        }
-        req.logout()
-        res.location('/')
-    })
+    console.log(req.session.isAuthenticated)
+    req.session.isAuthenticated = false;
+    console.log(req.session.isAuthenticated)
+    req.session.destroy(() => {
+        res.redirect("/login");
+      });
     console.log(req.session)
 };
-exports.dashboard = (req,res)=>{
-    if(req.session.user){
-        res.render('pages/dashboard',{user:req.session.user})
-    }else{
-        res.send('utilisateur non autorisé')
-    }
-}
+
 
 exports.deleteUser = (req,res)=>{};
 exports.updateUser = (req,res)=>{};
