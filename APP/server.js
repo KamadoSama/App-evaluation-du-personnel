@@ -31,13 +31,19 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-          maxAge: 30000, // 1 heure en millisecondes
+          maxAge: 3600000, // 1 heure en millisecondes
           httpOnly: true,
         },
       })
     );
 app.use('/user',userRouter);
 
+app.get('/register', (req, res) => {
+  res.render("pages/register");
+})
+app.get('/listEmploye', (req, res) => {
+  res.render("pages/listEmploye");
+})
 app.get('/', authentificate.isNotAuthenticated, (req,res)=>{
     res.render('pages/login');
 })

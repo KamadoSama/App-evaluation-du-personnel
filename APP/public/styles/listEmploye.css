@@ -1,0 +1,31 @@
+table{
+    margin: auto;
+    min-width: 1000px;
+    border-collapse: collapse;
+    border-spacing: 0 10px;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(32, 32, 32, .3);
+    background: #fafafa;
+    text-align: center;
+    font-size: 1em;
+}
+table thead th, table tbody td {
+    border: none;
+    padding: 30px;
+    font-size: 14px;
+}
+th{
+    background: #4566ea;
+    color: #fafafa;
+    text-transform: uppercase;
+}
+
+tr:nth-child(odd){
+    background-color: #eeeeee;
+}
+
+tr:hover {
+    transform: scale(1.02);
+    box-shadow: 2px 2px 12px rgb(0 0 0 / 20%), -1px -1px 8px rgb(0 0 0 / 20%);
+}
