@@ -6,7 +6,8 @@ const userSchema= new mongoose.Schema({
     identifiant:{type:String,required:true},
     rule:{type:String,required:true},
     password:{type:String,required:true},
-    allEvaluation:[{type:mongoose.Schema.Types.ObjectId,ref:'Evaluation'}]
+    allMyEvaluation:[{type:mongoose.Schema.Types.ObjectId,ref:'Evaluation'}],
+    allEvaluationOnMe:[{type:mongoose.Schema.Types.ObjectId,ref:'Evaluation'}]
 })
 
 const userModel = mongoose.model('User',userSchema);

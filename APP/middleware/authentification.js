@@ -1,6 +1,7 @@
 exports.isAuthenticated = (req, res, next) => {
     if (typeof req.session !== 'undefined' && req.session.isAuthenticated) {
         console.log(`isAuthenticated ${req.session.isAuthenticated}`)
+        
         return next();
     }  
     res.redirect("/login");

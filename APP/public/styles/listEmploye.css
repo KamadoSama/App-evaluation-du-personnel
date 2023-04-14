@@ -1,24 +1,39 @@
+.table-wrap {
+    overflow-x: auto;
+    margin: 0;
+}
+.btn1{
+    padding: 10px 10px !important;
+}
 table{
     margin: auto;
-    min-width: 1000px;
+    /* min-width: 1000px; */
     border-collapse: collapse;
     border-spacing: 0 10px;
     border-radius: 12px 12px 0 0;
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(32, 32, 32, .3);
+    overflow: hidden !important;
+    box-shadow: 0 2px 12px rgba(32, 32, 32, .3) !important;
     background: #fafafa;
     text-align: center;
     font-size: 1em;
 }
 table thead th, table tbody td {
     border: none;
-    padding: 30px;
+    /* padding: 5px; */
     font-size: 14px;
 }
+table tbody td {
+    border: none;
+    padding: 0px !important; 
+    font-size: 14px;
+}
+#listEmploye{
+    padding: 15px !important; 
+}
 th{
-    background: #4566ea;
-    color: #fafafa;
-    text-transform: uppercase;
+    background: #4566ea !important;
+    color: #fafafa !important;
+    text-transform: uppercase !important;
 }
 
 tr:nth-child(odd){

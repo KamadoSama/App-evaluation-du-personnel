@@ -5,11 +5,18 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const session = require("express-session");
 
+// let employes = [];
+
 exports.getAllUser = (req,res)=>{
-    User.find({})
-        .then(users=>res.json(users))
+    User.find({rule:"Employe"})
+        .then(users=> {
+            console.log(users);
+            res.render("pages/listEmploye", {employes: users})
+        })
         .catch(error=>console.log(error))
 };
+
+
 exports.registerUser = (req,res)=>{
     bcrypt.hash(req.body.password,10)
         .then(hash=>{
@@ -42,6 +49,7 @@ exports.loginUser = (req,res)=>{
                         console.log(req.session);
                         req.session.isAuthenticated = true;
                         req.session.user= req.body.identifiant;
+                        console.log(`id user ${req.session.id}`)
                         res.redirect('/dashboard');
                     })
                     .catch(error=>{

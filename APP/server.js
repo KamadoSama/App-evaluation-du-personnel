@@ -7,6 +7,7 @@ const bodyParser = require( 'body-parser');
 const session = require( 'express-session');
 const {v4:uuidv4} = require('uuid');
 const  userRouter = require('./routers/user.router.js')
+const evaluationRouter= require('./routers/evaluation.router.js')
 const cookieParser = require("cookie-parser");
 const authentificate = require("./middleware/authentification.js")
 
@@ -23,6 +24,7 @@ app.use(cookieParser());
 
 app.use('/static',express.static(path.join(__dirname,'public')))
 app.use('/assets',express.static(path.join(__dirname,'public/assets')))
+app.use('/js',express.static(path.join(__dirname,'public/js')))
 console.log(path.join(__dirname,'static'))
 
 app.use(
@@ -37,19 +39,26 @@ app.use(
       })
     );
 app.use('/user',userRouter);
-
-app.get('/register', (req, res) => {
+app.use('/evaluation',evaluationRouter);
+app.get('/register',authentificate.isAuthenticated, (req, res) => {
   res.render("pages/register");
 })
-app.get('/listEmploye', (req, res) => {
-  res.render("pages/listEmploye");
-})
+
+// app.get('/listEmploye', (req, res) => {
+//   res.render("pages/listEmploye");
+// })
+
+/*app.get('/evaluation',authentificate.isAuthenticated, (req, res) => {
+  res.render("pages/evaluation");
+})*/
 app.get('/', authentificate.isNotAuthenticated, (req,res)=>{
     res.render('pages/login');
 })
+
 app.get("/login", authentificate.isNotAuthenticated, (req, res) => {
   res.render("pages/login");
 });
+
 app.get('/dashboard', authentificate.isAuthenticated, (req,res)=>{
   console.log(`dashboard ${req.session.isAuthenticated}`)
   res.render('pages/dashboard',{user:req.session.user})

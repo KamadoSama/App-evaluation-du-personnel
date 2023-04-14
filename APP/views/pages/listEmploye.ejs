@@ -1,6 +1,5 @@
 <%- include('../partials/header')-%>  
-  <title>Dashboard</title>
-</head>
+  <title>Liste employé</title>
 <!-- Bootstrap CSS CDN -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <!-- Our Custom CSS -->
@@ -36,20 +35,19 @@ href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"
             <ul class="list-unstyled components">
            
                 
-                <li class="active">
-                    <a href="/dashboard"  aria-expanded="false">Dashboard</a>
-                  
-                </li>
-                <li>
-                    <a href="#">Evaluation</a>
-                    <a href="/listEmploye" >Liste des employés</a>
-                    
-                </li>
-                <li>
-                    <a href="/register">Ajouter un employé</a>
-                </li>
-               
-               
+              <li class="active">
+                <a href="/dashboard"  aria-expanded="false">Dashboard</a>
+              
+            </li>
+            <li>
+                <a href="/evaluation/">Evaluation</a>
+                <a href="/user/listEmploye" >Liste des employés</a>
+                
+            </li>
+            <li>
+                <a href="/register">Ajouter un employé</a>
+            </li>
+           
             </ul>
 
         <ul class="list-unstyled CTAs">
@@ -85,23 +83,26 @@ href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"
           </div>
         </div>
       </nav>
-      <section class="text-center">
-        
-    <table id="example" class="display" style="width: 100%">
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th>prenom</th>
-           
-          </tr>
-        </thead>
-        <tbody>
-         <tr>
-            <td>name</td>
-            <td>prenom</td>
-         </tr> 
-        </tbody>
-      </table>
+      <section class="text-center"> 
+        <table id="example" class="display table" style="width: 100%">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>prenom</th>
+              
+              </tr>
+            </thead>
+            <tbody>
+            
+              <% employes.forEach(employe => { %>
+                <tr>
+                  <td id="listEmploye"><%= employe.nom %></td>
+                  <td id="listEmploye"><%= employe.prenom %></td>
+                </tr>
+              <% }) %>
+                
+            </tbody>
+          </table>
       </section>
     </div>
 </div>
