@@ -1,15 +1,17 @@
-<%- include('../partials/header')-%>  
-  <title>Liste employé</title>
+<%- include('../partials/header')-%>
+<style>
+  td.evaluated {
+    background-color: green;
+  }
+</style>
+<title>Liste employé</title>
 <!-- Bootstrap CSS CDN -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <!-- Our Custom CSS -->
 <link rel="stylesheet" href="/static/styles/dashboard.css">
 <link rel="stylesheet" href="/static/styles/listEmploye.css">
 <link rel="stylesheet" href="/static/styles/Approvisionnement.css" />
-<link
-rel="stylesheet"
-href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"
-/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
 
 <!-- Option 1: Include in HTML -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -24,46 +26,46 @@ href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"
 </head>
 
 <body>
-<div class="wrapper">
+  <div class="wrapper">
     <!-- Sidebar  -->
-     <!-- Sidebar Holder -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3>Evaluation du personnel</h3>
-            </div>
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h3>Evaluation du personnel</h3>
+      </div>
 
-            <ul class="list-unstyled components">
-           
-                
-              <li class="active">
-                <a href="/dashboard"  aria-expanded="false">Dashboard</a>
-              
-            </li>
-            <li>
-                <a href="/evaluation/">Evaluation</a>
-                <a href="/user/listEmploye" >Liste des employés</a>
-                
-            </li>
-            <li>
-                <a href="/register">Ajouter un employé</a>
-            </li>
-           
-            </ul>
+      <ul class="list-unstyled components">
 
-        <ul class="list-unstyled CTAs">
-            <li>
-              <form action="/user/logout" method="POST">
-                <button type="submit" class="btn btn-light">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
-                    <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-                  </svg>
-                  Se deconnecter
-                </button>
-              </form>
-            </li>
-            
-        </ul>
+
+        <li class="active">
+          <a href="/dashboard" aria-expanded="false">Dashboard</a>
+
+        </li>
+        <li>
+          <a href="/evaluation/">Evaluation</a>
+          <a href="/listEmploye">Liste des employés</a>
+
+        </li>
+        <li>
+          <a href="/register">Ajouter un employé</a>
+        </li>
+
+      </ul>
+
+      <ul class="list-unstyled CTAs">
+        <li>
+          <form action="/user/logout" method="POST">
+            <button type="submit" class="btn btn-light">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z" />
+                <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+              </svg>
+              Se deconnecter
+            </button>
+          </form>
+        </li>
+
+      </ul>
     </nav>
 
     <!-- Page Content  -->
@@ -74,84 +76,161 @@ href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"
 
           <button type="button" id="sidebarCollapse" class="btn btn-info">
             <i class="fas fa-align-left"></i>
-                    
-          </button>
-                
 
-          <div class="mx-auto" >
+          </button>
+
+
+          <div class="mx-auto">
             <h1>Evaluation du personnel</h1>
           </div>
         </div>
       </nav>
-      <section class="text-center"> 
-        <table id="example" class="display table" style="width: 100%">
+      <section class="text-center">
+        <div class=" table-wrap m-2 pt-4">
+          <table id="example" class="display table table-bordered" style="width: 100%">
             <thead>
               <tr>
-                <th>Nom</th>
-                <th>prenom</th>
-              
+                <th scope="col">Nom</th>
+                <th scope="col">Janvier</th>
+                <th scope="col">Février</th>
+                <th scope="col">Mars</th>
+                <th scope="col">Avril</th>
+                <th scope="col">Mai</th>
+                <th scope="col">Juin</th>
+                <th scope="col">Juillet</th>
+                <th scope="col">Août</th>
+                <th scope="col">Septembre</th>
+                <th scope="col">Octobre</th>
+                <th scope="col">Novembre</th>
+                <th scope="col">Décembre</th>
               </tr>
             </thead>
             <tbody>
-            
-              <% employes.forEach(employe => { %>
-                <tr>
-                  <td id="listEmploye"><%= employe.nom %></td>
-                  <td id="listEmploye"><%= employe.prenom %></td>
-                </tr>
-              <% }) %>
-                
             </tbody>
           </table>
-      </section>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Evaluation <span></span> </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="/evaluation/creatEval" id="form-evaluation" method="post">
+                  <div class="form-group">
+                    <label for="recipient-name">Nom:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="nom" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="ponctualite">Ponctualité:</label>
+                    <input type="number" class="form-control" id="ponctualite" name="ponctualite" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="sociabilite">Sociabilité:</label>
+                    <input type="number" class="form-control" id="sociabilite" name="sociabilite" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="respectFichePoste">Respect de la fiche de poste:</label>
+                    <input type="number" class="form-control" id="respectFichePoste" name="respectFichePoste" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="participatif">Esprit participatif:</label>
+                    <input type="number" class="form-control" id="participatif" name="participatif" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="input-group-text" for="inputGroupSelect01">Mois</label>
+                    <select name="mois" class="form-select" id="inputGroupSelect01">
+                      <option selected>Choisir...</option>
+                      <option value="janvier">Janvier</option>
+                      <option value="février">Février</option>
+                      <option value="mars">Mars</option>
+                      <option value="avril">Avril</option>
+                      <option value="mai">Mai</option>
+                      <option value="juin">Juin</option>
+                      <option value="juillet">Juillet</option>
+                      <option value="août">Août</option>
+                      <option value="septembre">Septembre</option>
+                      <option value="octobre">Octobre</option>
+                      <option value="novembre">Novembre</option>
+                      <option value="décembre">Décembre</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Envoyer</button>
+                </form>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
     </div>
-</div>
+    </section>
 
-<!-- jQuery CDN - Slim version (=without AJAX) -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<!-- Popper.JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-<!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  </div>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar').toggleClass('active');
-        });
+  <script src="/js/gestionListEmploye.js"></script>
+  <!-- jQuery CDN - Slim version (=without AJAX) -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <!-- Popper.JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  <script>
+    $('#exampleModal').on('show.bs.modal', function(event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var recipient = button.data('whatever') // Extract info from data-* attributes
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this)
+      modal.find('.modal-title').text("Formulaire Evaluation ")
+      modal.find('.modal-body input').val(recipient)
+    })
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#sidebarCollapse').on('click', function() {
+        $('#sidebar').toggleClass('active');
+      });
     });
-</script>
-<script>
-    function tableau(tableau){
-         $(tableau).DataTable({
-             pageLength: 10,
-             lengthChange: false,
-             language: {
-                 searchPlaceholder: "Rechercher...",
-                 processing:     "Traitement en cours...",
-                 search:         "",
-                 lengthMenu:    "Afficher _MENU_ &eacute;l&eacute;ments",
-                 info:           "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-                 infoEmpty:      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
-                 infoFiltered:   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-                 infoPostFix:    "",
-                 loadingRecords: "Chargement en cours...",
-                 zeroRecords:    "Aucun &eacute;l&eacute;ment &agrave; afficher",
-                 emptyTable:     "Aucune donnée disponible dans le tableau",
-                 paginate: {
-                     first:      "Premier",
-                     previous:   "Pr&eacute;c&eacute;dent",
-                     next:       "Suivant",
-                     last:       "Dernier"
-                 },
-                 aria: {
-                     sortAscending:  ": activer pour trier la colonne par ordre croissant",
-                     sortDescending: ": activer pour trier la colonne par ordre décroissant"
-                 }
-             }
-         });
-     }
- 
-     $(document).ready(tableau('#example'));
- </script>
-<%- include('../partials/footer')-%>
+  </script>
+  <script>
+    function tableau(tableau) {
+      $(tableau).DataTable({
+        pageLength: 10,
+        lengthChange: false,
+        language: {
+          searchPlaceholder: "Rechercher...",
+          processing: "Traitement en cours...",
+          search: "",
+          lengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
+          info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+          infoEmpty: "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+          infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+          infoPostFix: "",
+          loadingRecords: "Chargement en cours...",
+          zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
+          emptyTable: "Aucune donnée disponible dans le tableau",
+          paginate: {
+            first: "Premier",
+            previous: "Pr&eacute;c&eacute;dent",
+            next: "Suivant",
+            last: "Dernier"
+          },
+          aria: {
+            sortAscending: ": activer pour trier la colonne par ordre croissant",
+            sortDescending: ": activer pour trier la colonne par ordre décroissant"
+          }
+        }
+      });
+    }
+
+    $(document).ready(tableau('#example'));
+  </script>
+  <%- include('../partials/footer')-%>

@@ -40,13 +40,16 @@ app.use(
     );
 app.use('/user',userRouter);
 app.use('/evaluation',evaluationRouter);
+app.get("/evaluation/",authentificate.isAuthenticated,(req,res)=>{
+  res.render("pages/evaluation")
+})
 app.get('/register',authentificate.isAuthenticated, (req, res) => {
   res.render("pages/register");
 })
 
-// app.get('/listEmploye', (req, res) => {
-//   res.render("pages/listEmploye");
-// })
+app.get('/listEmploye', (req, res) => {
+  res.render("pages/listEmploye");
+ })
 
 /*app.get('/evaluation',authentificate.isAuthenticated, (req, res) => {
   res.render("pages/evaluation");

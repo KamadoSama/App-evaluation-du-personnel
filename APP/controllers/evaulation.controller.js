@@ -5,10 +5,10 @@ const User = require( "../mongoDB/models/users.js");
 exports.getAllEvalution =async (req,res)=>{
     try{
         const employe = await User.find({rule:"Employe"}).populate('allEvaluationOnMe')
-        console.log("Evaluation")
-        console.log(employe);
-        res.render("pages/evaluation", {employe})
-        res.send(employe)
+        // console.log("Evaluation")
+        // console.log(employe);
+        res.status(200).json(employe)
+        // res.send(employe)
     }    
     catch(error){console.log(error)}
 };

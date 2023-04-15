@@ -7,13 +7,12 @@ const session = require("express-session");
 
 // let employes = [];
 
-exports.getAllUser = (req,res)=>{
-    User.find({rule:"Employe"})
-        .then(users=> {
-            console.log(users);
-            res.render("pages/listEmploye", {employes: users})
-        })
-        .catch(error=>console.log(error))
+exports.getAllUser =async (req,res)=>{
+    try{
+        const users = await User.find({rule:"Employe"})
+        res.status(200).json(users)
+    }
+    catch(error){console.log(error)}
 };
 
 
@@ -36,7 +35,7 @@ exports.registerUser = (req,res)=>{
 };
 
 exports.loginUser = (req,res)=>{
-    console.log(req.body);
+    // console.log(req.body);
     
     User.findOne({identifiant:req.body.identifiant})
         .then(user=>{
@@ -61,9 +60,9 @@ exports.loginUser = (req,res)=>{
         
 };
 exports.logoutUser = (req,res)=>{
-    console.log(req.session.isAuthenticated)
+    // console.log(req.session.isAuthenticated)
     req.session.isAuthenticated = false;
-    console.log(req.session.isAuthenticated)
+    // console.log(req.session.isAuthenticated)
     req.session.destroy(() => {
         res.redirect("/login");
       });

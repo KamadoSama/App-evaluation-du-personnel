@@ -18,10 +18,7 @@
 <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 
 <!-- Inclusion des feuilles de style de DataTables -->
-<link
-  rel="stylesheet"
-  href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"
-/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 </head>
@@ -45,7 +42,7 @@
         </li>
         <li>
           <a href="/evaluation/">Evaluation</a>
-          <a href="/user/listEmploye">Liste des employés</a>
+          <a href="/listEmploye">Liste des employés</a>
 
         </li>
         <li>
@@ -122,124 +119,24 @@
               </tr>
             </thead>
             <tbody>
-              <% employe.forEach(employe=>{ %> 
-                <tr>
-                  <td> <a type="button" class="btn1" data-toggle="modal" data-target="#exampleModal" data-whatever="<%= employe.nom%> <%= employe.prenom%>"><%= employe.nom%></a></td>
-                  <td> <a type="button" class="btn1" data-toggle="modal" data-target="#exampleModal" data-whatever="<%= employe.nom%> <%= employe.prenom%>"><%= employe.prenom%></a></td>
-                  <% employe.allEvaluationOnMe.forEach(evaluation => { %>
-                    <td > <a type="button" class="btn1 mois" data-toggle="modal" data-target="#exampleModal" data-whatever="<%= employe.nom%> <%= employe.prenom%>"><%= evaluation.mois%></a></td>
-                    <td> <a type="button" class="btn1" data-toggle="modal" data-target="#exampleModal" data-whatever="<%= employe.nom%> <%= employe.prenom%>"><%= evaluation.ponctualite%></a></td>
-                    <td> <a type="button" class="btn1" data-toggle="modal" data-target="#exampleModal" data-whatever="<%= employe.nom%> <%= employe.prenom%>"><%= evaluation.sociabilite%></a></td>
-                    <td> <a type="button" class="btn1" data-toggle="modal" data-target="#exampleModal" data-whatever="<%= employe.nom%> <%= employe.prenom%>"><%= evaluation.respectFichePoste%></a></td>
-                    <td> <a type="button" class="btn1" data-toggle="modal" data-target="#exampleModal" data-whatever="<%= employe.nom%> <%= employe.prenom%>"><%= evaluation.participatif%></a></td>
-                    <td> <a type="button" class="btn1" data-toggle="modal" data-target="#exampleModal" data-whatever="<%= employe.nom%> <%= employe.prenom%>"><%= evaluation.totalMois%></a></td>
-                  <% }) %>
-                  
-                </tr>
-              <% }) %> 
-              <% console.log(employe) %>
             </tbody>
           </table>
-
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Evaluation <span></span> </h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form action="/evaluation/creatEval" id="form-evaluation" method="post">
-                    <div class="form-group">
-                      <label for="recipient-name">Nom:</label>
-                      <input type="text" class="form-control" id="recipient-name" name="nom" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="ponctualite">Ponctualité:</label>
-                      <input type="number" class="form-control" id="ponctualite" name="ponctualite" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="sociabilite">Sociabilité:</label>
-                      <input type="number" class="form-control" id="sociabilite" name="sociabilite" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="respectFichePoste">Respect de la fiche de poste:</label>
-                      <input type="number" class="form-control" id="respectFichePoste" name="respectFichePoste" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="participatif">Esprit participatif:</label>
-                      <input type="number" class="form-control" id="participatif" name="participatif" required>
-                    </div>
-                    <div class="form-group">
-                      <label class="input-group-text" for="inputGroupSelect01">Mois</label>
-                      <select name="mois"  class="form-select" id="inputGroupSelect01">
-                        <option selected>Choisir...</option>
-                        <option value="janvier">Janvier</option>
-                        <option value="février">Février</option>
-                        <option value="mars">Mars</option>
-                        <option value="avril">Avril</option>
-                        <option value="mai">Mai</option>
-                        <option value="juin">Juin</option>
-                        <option value="juillet">Juillet</option>
-                        <option value="août">Août</option>
-                        <option value="septembre">Septembre</option>
-                        <option value="octobre">Octobre</option>
-                        <option value="novembre">Novembre</option>
-                        <option value="décembre">Décembre</option>
-                      </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Envoyer</button>
-                  </form>
-
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                 
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
-      </section>
-      <!-- <section class="text-center">
-        
-        <div class="p-5 bg-image" style="
-              background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
-              height: 300px;
-              "></div>
-              
-        <div class="w-50 card mx-auto mb-2 shadow-lg" style="
-              margin-top: -200px;
-              background: hsla(0, 0%, 100%, 0.8);
-              backdrop-filter: blur(30px);
-              ">
-          <div class="card-body py-5 px-md-5">
-      
-            <div class="row d-flex justify-content-center">
-              <div class="col-lg-10">
-                <h2 class="fw-bold mb-5">Evaluation</h2>
-                <% if(locals.evaluation){%>
-                  <div class="alert alert-success text-center">
-                     <%= evaluation %>
-                  </div>
-                <%}%>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Evaluation <span></span> </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
                 <form action="/evaluation/creatEval" id="form-evaluation" method="post">
-                  <div class="row">
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline">
-                        <input name="nom" type="text" id="form3Example1" class="form-control"  placeholder="Nom" />
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline">
-                        <input name="prenom" type="text" id="form3Example2" class="form-control"  placeholder="Prenom"/>
-                        
-                      </div>
-                    </div>
-                </div>  
+                  <div class="form-group">
+                    <label for="recipient-name">Nom:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="nom" required>
+                  </div>
                   <div class="form-group">
                     <label for="ponctualite">Ponctualité:</label>
                     <input type="number" class="form-control" id="ponctualite" name="ponctualite" required>
@@ -258,7 +155,7 @@
                   </div>
                   <div class="form-group">
                     <label class="input-group-text" for="inputGroupSelect01">Mois</label>
-                    <select name="mois"  class="form-select" id="inputGroupSelect01">
+                    <select name="mois" class="form-select" id="inputGroupSelect01">
                       <option selected>Choisir...</option>
                       <option value="janvier">Janvier</option>
                       <option value="février">Février</option>
@@ -276,48 +173,35 @@
                   </div>
                   <button type="submit" class="btn btn-primary">Envoyer</button>
                 </form>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+
               </div>
             </div>
           </div>
         </div>
-      </section> -->
-    </div>
-    
-  </div>
-  <script>
-    // récupérez le select
-    const select = document.querySelector("#inputGroupSelect01");
-    const table = document.querySelector("#example");
-    const mois = document.querySelectorAll(".mois");
-    console.log(mois)
-    select.addEventListener("change", (e) => {
-      const selectedMonth = e.target.value;
-      console.log(selectedMonth)
-      
-      
-      for (let i = 0; i < mois.length; i++) {
-        const row = mois[i];
-        const month = row.innerText;
-        console.log(month)
-        if (month !== selectedMonth) {
-          row.parentNode.parentNode.style.display = "none";
-        } else {
-          row.parentNode.parentNode.style.display ="";
-        }
-      }
-});
 
+    </div>
+    </section>
+
+  </div>
+
+  </div>
+  <script src="/js/gestionEvaluation.js">
+    // récupérez le select
   </script>
   <script>
-    $('#exampleModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
-    var recipient = button.data('whatever') // Extract info from data-* attributes
-    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-    var modal = $(this)
-    modal.find('.modal-title').text('New message to ' + recipient)
-    modal.find('.modal-body input').val(recipient)
-  })
+    $('#exampleModal').on('show.bs.modal', function(event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var recipient = button.data('whatever') // Extract info from data-* attributes
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this)
+      modal.find('.modal-title').text("Formulaire Evaluation")
+      modal.find('.modal-body input').val(recipient)
+    })
   </script>
   <!-- <script src="js/gestionFormEvaluation.js"></script> -->
   <!-- jQuery CDN - Slim version (=without AJAX) -->
@@ -334,38 +218,38 @@
       });
     });
   </script>
-<script>
- function tableau(tableau){
-    $(tableau).DataTable({
+  <script>
+    function tableau(tableau) {
+      $(tableau).DataTable({
         pageLength: -1, // afficher tous les éléments sur une seule page
         lengthChange: false, // ne pas afficher la liste déroulante du nombre d'éléments par page
         paging: false, // désactiver la pagination
         language: {
-            searchPlaceholder: "Rechercher...",
-            processing:     "Traitement en cours...",
-            search:         "",
-            info:           "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-            infoEmpty:      "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
-            infoFiltered:   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-            infoPostFix:    "",
-            loadingRecords: "Chargement en cours...",
-            zeroRecords:    "Aucun &eacute;l&eacute;ment &agrave; afficher",
-            emptyTable:     "Aucune donnée disponible dans le tableau",
-            paginate: {
-                first:      "Premier",
-                previous:   "Pr&eacute;c&eacute;dent",
-                next:       "Suivant",
-                last:       "Dernier"
-            },
-            aria: {
-                sortAscending:  ": activer pour trier la colonne par ordre croissant",
-                sortDescending: ": activer pour trier la colonne par ordre décroissant"
-            }
+          searchPlaceholder: "Rechercher...",
+          processing: "Traitement en cours...",
+          search: "",
+          info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+          infoEmpty: "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+          infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+          infoPostFix: "",
+          loadingRecords: "Chargement en cours...",
+          zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
+          emptyTable: "Aucune donnée disponible dans le tableau",
+          paginate: {
+            first: "Premier",
+            previous: "Pr&eacute;c&eacute;dent",
+            next: "Suivant",
+            last: "Dernier"
+          },
+          aria: {
+            sortAscending: ": activer pour trier la colonne par ordre croissant",
+            sortDescending: ": activer pour trier la colonne par ordre décroissant"
+          }
         }
-    });
-}
+      });
+    }
 
-     $(document).ready(tableau('#example'));
- </script>
- 
+    $(document).ready(tableau('#example'));
+  </script>
+
   <%- include('../partials/footer')-%>
