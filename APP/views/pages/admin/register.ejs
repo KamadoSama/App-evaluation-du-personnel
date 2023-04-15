@@ -1,4 +1,4 @@
-<%- include('../partials/header')-%>  
+<%- include('../../partials/header')-%>  
   <title>Dashboard</title>
 </head>
 <!-- Bootstrap CSS CDN -->
@@ -19,7 +19,9 @@
      <!-- Sidebar Holder -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>Evaluation du personnel</h3>
+              <% if(locals.NomUser && locals.PrenomUser){%>
+                <h3><%= NomUser %> <%= PrenomUser %>  </h3>
+              <%}%>
             </div>
 
             <ul class="list-unstyled components">
@@ -155,4 +157,4 @@
     });
 </script>
     
-<%- include('../partials/footer')-%>
+<%- include('../../partials/footer')-%>

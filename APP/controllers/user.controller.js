@@ -9,7 +9,7 @@ const session = require("express-session");
 
 exports.getAllUser =async (req,res)=>{
     try{
-        const users = await User.find({rule:"Employe"})
+        const users = await User.find({rule:"Employe"}).populate("allMyEvaluation")
         res.status(200).json(users)
     }
     catch(error){console.log(error)}
@@ -47,8 +47,10 @@ exports.loginUser = (req,res)=>{
                         
                         console.log(req.session);
                         req.session.isAuthenticated = true;
-                        req.session.user= req.body.identifiant;
-                        console.log(`id user ${req.session.id}`)
+                        req.session.user= user;
+                        req.session.rule = user.rule
+                        console.log(`id user ${req.session.rule}`)
+                        console.log(`nom ${req.session.user.nom}`)
                         res.redirect('/dashboard');
                     })
                     .catch(error=>{

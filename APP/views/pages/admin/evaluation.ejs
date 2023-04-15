@@ -1,4 +1,4 @@
-<%- include('../partials/header')-%>
+<%- include('../../partials/header')-%>
 <title>Evaluation</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
@@ -30,7 +30,9 @@
     <!-- Sidebar Holder -->
     <nav id="sidebar">
       <div class="sidebar-header">
-        <h3>Evaluation du personnel</h3>
+        <% if(locals.NomUser && locals.PrenomUser){%>
+          <h3><%= NomUser %> <%= PrenomUser %>  </h3>
+        <%}%>
       </div>
 
       <ul class="list-unstyled components">
@@ -252,4 +254,4 @@
     $(document).ready(tableau('#example'));
   </script>
 
-  <%- include('../partials/footer')-%>
+  <%- include('../../partials/footer')-%>

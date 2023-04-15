@@ -40,15 +40,26 @@ app.use(
     );
 app.use('/user',userRouter);
 app.use('/evaluation',evaluationRouter);
+
 app.get("/evaluation/",authentificate.isAuthenticated,(req,res)=>{
-  res.render("pages/evaluation")
+  if(req.session.rule === "Administrateur"){
+    res.render("pages/admin/evaluation",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom})
+  }else{
+    res.render("pages/user/evaluation",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom})
+
+  }
 })
+
 app.get('/register',authentificate.isAuthenticated, (req, res) => {
-  res.render("pages/register");
+  res.render("pages/admin/register",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom});
 })
 
 app.get('/listEmploye', (req, res) => {
-  res.render("pages/listEmploye");
+  if(req.session.rule === "Administrateur"){
+    res.render("pages/admin/listEmploye",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom});
+  }else{
+    res.render("pages/user/listEmploye",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom});
+  }
  })
 
 /*app.get('/evaluation',authentificate.isAuthenticated, (req, res) => {
@@ -63,8 +74,12 @@ app.get("/login", authentificate.isNotAuthenticated, (req, res) => {
 });
 
 app.get('/dashboard', authentificate.isAuthenticated, (req,res)=>{
-  console.log(`dashboard ${req.session.isAuthenticated}`)
-  res.render('pages/dashboard',{user:req.session.user})
+  if(req.session.rule === "Administrateur"){
+    // console.log(`dashboard ${req.session.isAuthenticated}`)
+    res.render('pages/admin/dashboard',{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom})
+  }else{
+    res.render('pages/user/dashboard',{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom})
+  }
 })
 
 const startServer = async () =>{

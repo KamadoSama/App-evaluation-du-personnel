@@ -5,7 +5,7 @@ const router = express.Router()
 
 
 router.get('/affiche', controllerEvaluation.getAllEvalution)
-
+router.get('/evaluerChart',controllerEvaluation.getAllEvalutionForEvaluer)
 router.post('/creatEval',controllerEvaluation.createEvalution )
 router.delete('/:id', controllerEvaluation.deleteEvalution)
 router.patch('/:id',controllerEvaluation.updateEvalution)

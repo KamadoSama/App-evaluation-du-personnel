@@ -2,21 +2,38 @@ const mongoose = require("mongoose");
 const Evaluation = require( "../mongoDB/models/evaluation.js");
 const User = require( "../mongoDB/models/users.js");
 
-exports.getAllEvalution =async (req,res)=>{
-    try{
-        const employe = await User.find({rule:"Employe"}).populate('allEvaluationOnMe')
-        // console.log("Evaluation")
-        // console.log(employe);
-        res.status(200).json(employe)
-        // res.send(employe)
-    }    
-    catch(error){console.log(error)}
+exports.getAllEvalution = (req,res)=>{
+    console.log(`user_is ${req.session.user._id}`)
+    User.find({ rule: 'Employe' })
+    .populate({ 
+      path: 'allEvaluationOnMe',
+      match: { evaluateur: req.session.user._id}
+    })
+    .exec()
+    .then(users => {
+      // les utilisateurs et les évaluations ont été récupérés avec succès
+      console.log(users)
+      res.status(200).json(users);
+    })
+    .catch(err => {
+      console.log(err)
+    });
 };
+exports.getAllEvalutionForEvaluer= async (req,res)=>{
+    try{
+        const evaluation =  await Evaluation.find({evaluer:req.session.user._id})
+        res.status(200).json(evaluation)
+    }catch(err){
+        console.log(err)
+        res.status(404).json(err)
+    }
+    
+}
 exports.createEvalution = async(req,res)=>{
    try{
     fullName =  req.body.nom.split(" ")
     const evaluer = await User.findOne({nom:fullName[0],prenom:fullName[1]})
-    const evaluateur = await User.findOne({identifiant:req.session.user})
+    const evaluateur = await User.findOne({identifiant:req.session.user.identifiant})
     console.log(`Evaluer ${evaluer}`)
     console.log(`Evaluateur ${evaluateur}`)
     const newEvaluation =  await Evaluation.create({
@@ -29,8 +46,13 @@ exports.createEvalution = async(req,res)=>{
     evaluer.allEvaluationOnMe.push(newEvaluation)
     evaluer.save()
     const employe = await User.find({rule:"Employe"}).populate('allEvaluationOnMe')
-    res.render('pages/evaluation',{employe});
-    res.end('evaluation enregister');
+    if(evaluateur.rule==="Administrateur"){
+        res.render('pages/admin/evaluation',{employe});
+        res.end('evaluation enregister');
+    }else{
+        res.render('pages/user/evaluation',{employe});
+        res.end('evaluation enregister');
+    }
    }
    catch(error){
     console.log(error)
