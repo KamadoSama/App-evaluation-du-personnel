@@ -5,13 +5,13 @@ const cors = require('cors');
 const {connectDB} = require('./mongoDB/connect.js');
 const bodyParser = require( 'body-parser');
 const session = require( 'express-session');
-const {v4:uuidv4} = require('uuid');
+
 const  userRouter = require('./routers/user.router.js')
 const evaluationRouter= require('./routers/evaluation.router.js')
 const cookieParser = require("cookie-parser");
 const authentificate = require("./middleware/authentification.js")
 const User = require("./mongoDB/models/users.js");
-const { error } = require('console');
+
 dotenv.config()
 const port = 8080 || port.env.PORT;
 const app = express();
