@@ -1,5 +1,5 @@
 
-fetch("http://localhost:8080/evaluation/evaluerChart")
+fetch("https://evaluation-du-personnel.onrender.com/evaluation/evaluerChart")
 .then(reponse=>reponse.json())
 .then(reponse=>{
     
