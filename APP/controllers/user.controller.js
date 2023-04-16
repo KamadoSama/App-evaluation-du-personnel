@@ -25,7 +25,7 @@ exports.registerUser = (req,res)=>{
             })
             user.save()
             .then(()=>{
-                res.render('pages/register',{register:'utilisateur enregistrer avec succès...!'});
+                res.render('pages/admin/register',{register:'utilisateur enregistrer avec succès...!'});
                 res.end('utilisateur enregister');
             })
         })
@@ -40,7 +40,7 @@ exports.loginUser = (req,res)=>{
     User.findOne({identifiant:req.body.identifiant})
         .then(user=>{
             if(!user){
-                res.end('mot de passe ou identifiant incorrect')
+                res.render('pages/login',{login: "nom d'utilisateur incorrect ou non enregistrer...!"});
             }else{
                 bcrypt.compare(user.password, req.body.password)
                     .then(valid=>{
