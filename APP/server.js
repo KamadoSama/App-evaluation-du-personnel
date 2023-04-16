@@ -10,7 +10,8 @@ const  userRouter = require('./routers/user.router.js')
 const evaluationRouter= require('./routers/evaluation.router.js')
 const cookieParser = require("cookie-parser");
 const authentificate = require("./middleware/authentification.js")
-
+const User = require("./mongoDB/models/users.js");
+const { error } = require('console');
 dotenv.config()
 const port = 8080 || port.env.PORT;
 const app = express();
@@ -43,7 +44,10 @@ app.use('/evaluation',evaluationRouter);
 
 app.get("/evaluation/",authentificate.isAuthenticated,(req,res)=>{
   if(req.session.rule === "Administrateur"){
+    
     res.render("pages/admin/evaluation",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom})
+
+  
   }else{
     res.render("pages/user/evaluation",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom})
 
@@ -54,17 +58,20 @@ app.get('/register',authentificate.isAuthenticated, (req, res) => {
   res.render("pages/admin/register",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom});
 })
 
-app.get('/listEmploye', (req, res) => {
+app.get('/listEmploye',authentificate.isAuthenticated, (req, res) => {
   if(req.session.rule === "Administrateur"){
-    res.render("pages/admin/listEmploye",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom});
+    User.find({rule:"Employe"})
+    .then(employe=>{
+      res.render("pages/admin/listEmploye",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom,employe:employe})
+
+    })
+    .catch(error=>console.log(error))
   }else{
     res.render("pages/user/listEmploye",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom});
   }
  })
 
-/*app.get('/evaluation',authentificate.isAuthenticated, (req, res) => {
-  res.render("pages/evaluation");
-})*/
+
 app.get('/', authentificate.isNotAuthenticated, (req,res)=>{
     res.render('pages/login');
 })
@@ -75,7 +82,7 @@ app.get("/login", authentificate.isNotAuthenticated, (req, res) => {
 
 app.get('/dashboard', authentificate.isAuthenticated, (req,res)=>{
   if(req.session.rule === "Administrateur"){
-    // console.log(`dashboard ${req.session.isAuthenticated}`)
+  
     res.render('pages/admin/dashboard',{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom})
   }else{
     res.render('pages/user/dashboard',{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom})

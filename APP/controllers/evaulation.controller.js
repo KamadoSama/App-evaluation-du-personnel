@@ -3,16 +3,15 @@ const Evaluation = require( "../mongoDB/models/evaluation.js");
 const User = require( "../mongoDB/models/users.js");
 
 exports.getAllEvalution = (req,res)=>{
-    console.log(`user_is ${req.session.user._id}`)
-    User.find({ rule: 'Employe' })
+   
+    User.find({ rule: 'Employe', _id: { $ne: req.session.user._id }  })
     .populate({ 
       path: 'allEvaluationOnMe',
       match: { evaluateur: req.session.user._id}
     })
     .exec()
     .then(users => {
-      // les utilisateurs et les évaluations ont été récupérés avec succès
-      console.log(users)
+     
       res.status(200).json(users);
     })
     .catch(err => {
@@ -34,8 +33,7 @@ exports.createEvalution = async(req,res)=>{
     fullName =  req.body.nom.split(" ")
     const evaluer = await User.findOne({nom:fullName[0],prenom:fullName[1]})
     const evaluateur = await User.findOne({identifiant:req.session.user.identifiant})
-    console.log(`Evaluer ${evaluer}`)
-    console.log(`Evaluateur ${evaluateur}`)
+    
     const newEvaluation =  await Evaluation.create({
         ...req.body,
         evaluateur:evaluateur._id,

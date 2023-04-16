@@ -45,12 +45,11 @@ exports.loginUser = (req,res)=>{
                 bcrypt.compare(user.password, req.body.password)
                     .then(valid=>{
                         
-                        console.log(req.session);
+                     
                         req.session.isAuthenticated = true;
                         req.session.user= user;
                         req.session.rule = user.rule
-                        console.log(`id user ${req.session.rule}`)
-                        console.log(`nom ${req.session.user.nom}`)
+                       
                         res.redirect('/dashboard');
                     })
                     .catch(error=>{
@@ -71,6 +70,61 @@ exports.logoutUser = (req,res)=>{
     console.log(req.session)
 };
 
+exports.getAllUserForAdmin = async (req,res)=>{
+    User.find({ rule: 'Employe' })
+    .populate({
+      path: 'allMyEvaluation',
+      model: 'Evaluation',
+      select: '-evaluateur -evaluer.__v -evaluer.password -evaluer.rule',
+    })
+    .populate({
+      path: 'allEvaluationOnMe',
+      model: 'Evaluation',
+      select: '-evaluer -evaluateur.__v -evaluateur.password -evaluateur.rule',
+    })
+    .then((users) => {
+      const result = users.map((user) => {
+        const moyennesParMois = {};
+        const evaluationsOnMe = user.allEvaluationOnMe
+        const myEvaluations = user.allMyEvaluation
 
+  
+        for (const evaluation of evaluationsOnMe) {
+          
+          const mois = evaluation.mois;
+          if (!moyennesParMois[mois]) {
+            moyennesParMois[mois] = {
+              mois: mois,
+              moyenne: 0,
+              total:0,
+              count:0,
+            };
+          }
+          moyennesParMois[mois].total += (evaluation.totalMois) ;
+          moyennesParMois[mois].count+=1
+        }
+  
+        for (const mois in moyennesParMois) {
+          moyennesParMois[mois].moyenne = Math.round(moyennesParMois[mois].total/moyennesParMois[mois].count) ;
+        }
+  
+        const moyenneAnnuelle = Object.values(moyennesParMois).reduce((total, current) => total + current.moyenne, 0) / 12;
+  
+        return {
+          nom: user.nom,
+          prenom: user.prenom,
+          identifiant: user.identifiant,
+          rule: user.rule,
+          moyennesParMois: Object.values(moyennesParMois),
+          moyenneAnnuelle: Math.round(moyenneAnnuelle) ,
+        };
+      });
+      //console.log(result);
+      res.status(200).json(result)
+    })
+    .catch((err) => console.error(err));
+  
+      
+}
 exports.deleteUser = (req,res)=>{};
 exports.updateUser = (req,res)=>{};

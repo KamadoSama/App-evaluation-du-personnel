@@ -9,6 +9,6 @@ router.post('/logout',controllerUser.logoutUser);
 router.delete('/:id',controllerUser.deleteUser);
 router.patch('/:id',controllerUser.deleteUser);
 router.get('/listEmploye',authentificate.isAuthenticated,controllerUser.getAllUser);
-//router.get('/dashboard',controllerUser.dashboard);
+router.get('/listEmployeAdmin',controllerUser.getAllUserForAdmin);
 
 module.exports = router
