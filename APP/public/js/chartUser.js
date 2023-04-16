@@ -43,8 +43,21 @@ fetch("https://evaluation-du-personnel.onrender.com/evaluation/evaluerChart")
     console.log(averageByMonth)
     console.log(categories)
     const options = {
-        chart: {
+        chart:
+         {toolbar: {
+            show: true,
+            tools: {
+                download: true,
+                selection: true,
+                zoom: false,
+                zoomin: false,
+                zoomout: false,
+                pan: false,
+                reset: false 
+            }
+        },
           height: 350,
+          width:500,
           type: "line",
           stacked: false
         },

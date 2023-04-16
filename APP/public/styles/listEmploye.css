@@ -5,6 +5,9 @@
 .btn1{
   padding:   11px 39px !important;
 }
+#chart{
+    overflow: auto !important;
+}
 .invisible-link {
     text-indent: -9999px;
   }
