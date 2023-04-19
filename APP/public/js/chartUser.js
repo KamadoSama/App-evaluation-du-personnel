@@ -1,5 +1,5 @@
 
-fetch("https://evaluation-du-personnel.onrender.com/evaluation/evaluerChart")
+fetch("http://localhost:8080/evaluation/evaluerChart")
 .then(reponse=>reponse.json())
 .then(reponse=>{
     
@@ -57,14 +57,14 @@ fetch("https://evaluation-du-personnel.onrender.com/evaluation/evaluerChart")
             }
         },
           height: 350,
-          width:500,
-          type: "line",
+          width:1000,
+          type: "bar",
           stacked: false
         },
         dataLabels: {
           enabled: false
         },
-        colors: ['#475BE8', '#CFC8FF', '#66C7F4'],
+        
         series: [
           
           {
@@ -74,16 +74,14 @@ fetch("https://evaluation-du-personnel.onrender.com/evaluation/evaluerChart")
           },
           
         ],
-        stroke: {
-          width: [4, 4, 4]
-        },
+       
         plotOptions: {
           bar: {
-            columnWidth: "20%"
+            columnWidth: "40%"
           }
         },
         xaxis: {
-          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          categories: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],
         },
         title: {
             text: 'Moyenne mensuelle des évaluations obtenues',
@@ -106,10 +104,7 @@ fetch("https://evaluation-du-personnel.onrender.com/evaluation/evaluerChart")
               text: 'Moyenne générale par mois',
             }
           },
-          {
-            seriesName: 'Mois dernier',
-            show: false
-          }, 
+          
         ],
         fill: {
           opacity: 1,

@@ -86,9 +86,7 @@ exports.getAllUserForAdmin = async (req,res)=>{
       const result = users.map((user) => {
         const moyennesParMois = {};
         const evaluationsOnMe = user.allEvaluationOnMe
-        const myEvaluations = user.allMyEvaluation
-
-  
+    
         for (const evaluation of evaluationsOnMe) {
           
           const mois = evaluation.mois;
