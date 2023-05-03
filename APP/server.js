@@ -60,12 +60,7 @@ app.get('/register',authentificate.isAuthenticated, (req, res) => {
 
 app.get('/listEmploye',authentificate.isAuthenticated, (req, res) => {
   if(req.session.rule === "Administrateur"){
-    User.find({rule:"Employe"})
-    .then(employe=>{
-      res.render("pages/admin/listEmploye",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom,employe:employe})
-
-    })
-    .catch(error=>console.log(error))
+    res.render("pages/admin/listEmploye",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom})
   }else{
     res.render("pages/user/listEmploye",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom});
   }

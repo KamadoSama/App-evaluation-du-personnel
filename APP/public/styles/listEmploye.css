@@ -10,6 +10,8 @@
 }
 .invisible-link {
     text-indent: -9999px;
+    display: block;
+    overflow: hidden;
   }
 table{
     margin: auto;

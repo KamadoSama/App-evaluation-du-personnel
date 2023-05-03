@@ -37,23 +37,22 @@
       </div>
 
       <ul class="list-unstyled components">
-
-
+           
+              
         <li class="active">
-          <a href="/dashboard" aria-expanded="false">Dashboard</a>
-
+          <a href="/dashboard"  aria-expanded="false">Dashboard</a>
+        
         </li>
         <li>
-          <a href="/evaluation/">Evaluation</a>
-          <a href="/listEmploye">Liste des employés</a>
-
+            <a href="/evaluation/">Evaluation</a>
+            <a href="/listEmploye" >Liste des employés</a>
+            
         </li>
         <li>
-          <a href="/register">Ajouter un employé</a>
+            <a href="/register">Ajouter un employé</a>
         </li>
-
+     
       </ul>
-
       <ul class="list-unstyled CTAs">
         <li>
           <form action="/user/logout" method="POST">
@@ -88,31 +87,97 @@
         </div>
       </nav>
       <section class="text-center">
+        <p>Cliquez sur une case pour evaluer le collaborateur les mois evaluer seront colorés en vert </p>
         <div class=" table-wrap m-2 pt-4">
           <table id="example" class="display table table-bordered" style="width: 100%">
             <thead>
               <tr>
                 <th scope="col">Nom</th>
-                <th scope="col">Prenom</th>
+                <th scope="col">Janvier</th>
+                <th scope="col">Février</th>
+                <th scope="col">Mars</th>
+                <th scope="col">Avril</th>
+                <th scope="col">Mai</th>
+                <th scope="col">Juin</th>
+                <th scope="col">Juillet</th>
+                <th scope="col">Août</th>
+                <th scope="col">Septembre</th>
+                <th scope="col">Octobre</th>
+                <th scope="col">Novembre</th>
+                <th scope="col">Décembre</th>
               </tr>
             </thead>
             <tbody>
-              <% employe.forEach(employe=>{ %> 
-                <tr>
-                  <td><%= employe.nom%></td>
-                  <td><%= employe.prenom%></td>
-                </tr>
-              <% }) %> 
             </tbody>
           </table>
         </div>
-        
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Evaluation <span></span> </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="/evaluation/creatEval" id="form-evaluation" method="post">
+                  <div class="form-group">
+                    <label for="recipient-name">Nom:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="nom" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="ponctualite">Ponctualité:</label>
+                    <input type="number" class="form-control" id="ponctualite" name="ponctualite" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="sociabilite">Sociabilité:</label>
+                    <input type="number" class="form-control" id="sociabilite" name="sociabilite" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="respectFichePoste">Respect de la fiche de poste:</label>
+                    <input type="number" class="form-control" id="respectFichePoste" name="respectFichePoste" required>
+                  </div>
+                  <!-- <div class="form-group">
+                    <label for="participatif">Esprit participatif:</label>
+                    <input type="number" class="form-control" id="participatif" name="participatif" >
+                  </div> -->
+                  <div class="form-group">
+                    <label class="input-group-text" for="inputGroupSelect01">Mois</label>
+                    <select name="mois" class="form-select" id="inputGroupSelect01">
+                      <option selected>Choisir...</option>
+                      <option value="janvier">Janvier</option>
+                      <option value="février">Février</option>
+                      <option value="mars">Mars</option>
+                      <option value="avril">Avril</option>
+                      <option value="mai">Mai</option>
+                      <option value="juin">Juin</option>
+                      <option value="juillet">Juillet</option>
+                      <option value="août">Août</option>
+                      <option value="septembre">Septembre</option>
+                      <option value="octobre">Octobre</option>
+                      <option value="novembre">Novembre</option>
+                      <option value="décembre">Décembre</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Envoyer</button>
+                </form>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
     </div>
     </section>
 
   </div>
 
-  
+  <script src="/js/gestionListEmploye.js"></script>
   <!-- jQuery CDN - Slim version (=without AJAX) -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <!-- Popper.JS -->
