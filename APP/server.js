@@ -58,6 +58,10 @@ app.get('/register',authentificate.isAuthenticated, (req, res) => {
   res.render("pages/admin/register",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom});
 })
 
+app.get('/participatif',authentificate.isAuthenticated, (req, res) => {
+  res.render("pages/admin/participation",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom});
+})
+
 app.get('/listEmploye',authentificate.isAuthenticated, (req, res) => {
   if(req.session.rule === "Administrateur"){
     res.render("pages/admin/listEmploye",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom})

@@ -2,12 +2,13 @@ const mongoose = require("mongoose");
 
 const evaluationSchema = new mongoose.Schema({
     ponctualite: { type: Number, required: true,   },
-    sociabilite: { type: Number, required: true,   },
+    sociabilite: { type: Number, default:0  },
     respectFichePoste: { type: Number, required: true,   },
     participatif: { type: Number, default:0 },
     mois: { type: String, required: true },
     evaluateur: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     evaluer: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+
     totalMois: { type: Number, default: 0 }
   });
   
