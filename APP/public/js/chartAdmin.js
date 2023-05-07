@@ -1,5 +1,5 @@
 
-fetch("http://localhost:8080/evaluation/evaluerChart")
+fetch("https://evaluation-m5m1.onrender.com/evaluation/evaluerChart")
 .then(reponse=>reponse.json())
 .then(data => {
   // Tableau avec tous les mois de l'année
