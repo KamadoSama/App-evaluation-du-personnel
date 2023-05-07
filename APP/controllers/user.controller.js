@@ -39,21 +39,27 @@ exports.loginUser = (req,res)=>{
     
     User.findOne({identifiant:req.body.identifiant})
         .then(user=>{
+          // console.log(user.password)
             if(!user){
                 res.render('pages/login',{login: "nom d'utilisateur incorrect ou non enregistrer...!"});
             }else{
-                bcrypt.compare(user.password, req.body.password)
+                bcrypt.compare( req.body.password,user.password)
                     .then(valid=>{
+                      // console.log(valid)
+                       if(!valid){
+                        res.render('pages/login',{login: "nom d'utilisateur incorrect ou mot de passe incorrect...!"});
                         
-                     
-                        req.session.isAuthenticated = true;
-                        req.session.user= user;
-                        req.session.rule = user.rule
+                       }
                        
-                        res.redirect('/dashboard');
+                       req.session.isAuthenticated = true;
+                       req.session.user= user;
+                       req.session.rule = user.rule
+                      
+                       res.redirect('/dashboard');
                     })
                     .catch(error=>{
-                        console.log(error)
+                      res.render('pages/login',{login: "nom d'utilisateur incorrect ou non enregistrer...!"});
+                      console.log(error)
                     })
             }
         })
