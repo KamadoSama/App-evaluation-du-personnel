@@ -27,16 +27,17 @@
             <ul class="list-unstyled components">
            
               <li class="active">
-                <a href="/dashboard"  aria-expanded="false">Dashboard</a>        
+                <a href="/dashboard"  aria-expanded="false">Dashboard</a>
+              
               </li>
               <li>
-                  <a href="/evaluation/">Evaluation</a>
+                  <a href="/evaluation/">Voir les evaluations</a>
               </li>
               <li>
                 <a href="/listEmploye" >Liste des employés</a>
               </li>
               <li>
-                <a href="/participatif">Note de participationn</a>
+                <a href="/participatif">Participation</a>
               </li>
               <li>
                   <a href="/register">Ajouter un employé</a>
@@ -97,45 +98,28 @@
             <div class="row d-flex justify-content-center">
               <div class="col-lg-10">
                 <h2 class="fw-bold mb-5">Enregistrer les utilisateurs</h2>
-                <% if(locals.register){%>
+                <% if(locals.Supprimer){%>
                   <div class="alert alert-success text-center">
-                     <%= register %>
+                     <%= Supprimer %>
                   </div>
                 <%}%>
-                <form action="/user/register" method="post">
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
-                          <div class="form-outline">
-                            <input name="nom" type="text" id="form3Example1" class="form-control"  placeholder="Nom" />
-                            
-                          </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                          <div class="form-outline">
-                            <input name="prenom" type="text" id="form3Example2" class="form-control"  placeholder="Prenom"/>
-                            
-                          </div>
-                        </div>
-                    </div>  
-                    
-                    <div class="form-outline mb-4">
-                        <input  type="text" name="identifiant" id="form3Example3" class="form-control" placeholder="Nom d'utilisateur" />    
+                <% if(locals.bad){%>
+                    <div class="alert alert-danger text-center">
+                       <%= bad %>
                     </div>
-                   
+                  <%}%>
+                <form action="/user/delete" method="post">
+        
                     <div class="form-outline mb-4">
-                        <select name="rule" class="form-select" aria-label="Default select example">
-                            <option selected>Role</option>
-                            <option value="Administrateur">Administrateur</option>
-                            <option value="Employe">Employé</option>
-                        </select>
+                        <input name="nom" type="text" id="form3Example1" class="form-control"  placeholder="Nom" />
+                        
                     </div>
                     <div class="form-outline mb-4">
-                        <input type="password" name="password" id="form3Example4" class="form-control" placeholder="Mot de passe"/>
+                        <input name="prenom" type="text" id="form3Example2" class="form-control"  placeholder="Prenom"/>    
                     </div>
-                
                     <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-block mb-4">
-                        Enregistrer
+                    <button type="submit" class="btn btn-danger btn-block mb-4">
+                        Supprimer
                     </button>
       
                 </form>

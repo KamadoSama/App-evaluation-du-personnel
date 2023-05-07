@@ -106,11 +106,8 @@
                 <th scope="col">Nom</th>
                 <th scope="col">Prenom</th>
                 <th scope="col">Mois</th>
-                <th scope="col">Ponctualité</th>
-                <th scope="col">Sociabilite</th>
-                <th scope="col">Respect fiche de poste</th>
-                <th scope="col">Participatif</th>
-                <th scope="col">Total</th>
+                <th scope="col">note</th>
+                <th scope="col">Sociabilite</th>      
               </tr>
             </thead>
             <tbody>
@@ -127,30 +124,22 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form action="/evaluation/creatEval" id="form-evaluation" method="post">
+                <form action="/evaluation/sociabilite" id="form-evaluation" method="post">
                   <div class="form-group">
                     <label for="recipient-name">Nom:</label>
                     <input type="text" class="form-control" id="recipient-name" name="nom" required>
                   </div>
                   <div class="form-group">
-                    <label for="ponctualite">Ponctualité:</label>
-                    <input type="number" class="form-control" id="ponctualite" name="ponctualite" required>
-                  </div>
-                  <div class="form-group">
                     <label for="sociabilite">Sociabilité:</label>
-                    <input type="number" class="form-control" id="sociabilite" name="sociabilite" required>
+                    <input type="number" max="1" min="0" class="form-control" id="sociabilite" name="sociabilite" required>
                   </div>
                   <div class="form-group">
-                    <label for="respectFichePoste">Respect de la fiche de poste:</label>
-                    <input type="number" class="form-control" id="respectFichePoste" name="respectFichePoste" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="participatif">Esprit participatif:</label>
-                    <input type="number" class="form-control" id="participatif" name="participatif" required>
+                    <label for="exampleFormControlTextarea1">Observation</label>
+                    <textarea class="form-control" name="observation" id="exampleFormControlTextarea1" rows="3"></textarea>
                   </div>
                   <div class="form-group">
                     <label class="input-group-text" for="inputGroupSelect01">Mois</label>
-                    <select name="mois" class="form-select" id="inputGroupSelect01">
+                    <select name="mois" class="form-select" id="inputGroupSelect01" required>
                       <option selected>Choisir...</option>
                       <option value="janvier">Janvier</option>
                       <option value="février">Février</option>
@@ -184,7 +173,7 @@
   </div>
 
   </div>
-  <script src="/js/gestionEvaluation.js">
+  <script src="/js/gestionObservation.js">
     // récupérez le select
   </script>
   <script>

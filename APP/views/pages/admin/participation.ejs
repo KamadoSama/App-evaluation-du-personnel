@@ -1,5 +1,5 @@
 <%- include('../../partials/header')-%>
-  <title>Evaluation</title>
+  <title>Participation</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
     integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
@@ -65,6 +65,7 @@
             <a href="/delete">Supprimer un employé</a>
            </li> 
         </ul>
+        </ul>
 
         <ul class="list-unstyled CTAs">
           <li>
@@ -103,53 +104,131 @@
           </div>
         </nav>
         <section class="text-center">
-          <p>Choisissez un mois vous verrez le nom des collaborateur ainsi que leurs notes pour ce mois </p>
+          <p>Choisissez le nom du collaborateur que vous voulez evaluer</p>
           <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">Mois</label>
-            <select class="form-select" id="inputGroupSelect01">
+            <label class="input-group-text" for="inputGroupSelect02">Employé</label>
+            <select class="form-select" id="inputGroupSelect02">
               <option selected>Choisir...</option>
-              <option value="janvier">Janvier</option>
-              <option value="février">Février</option>
-              <option value="mars">Mars</option>
-              <option value="avril">Avril</option>
-              <option value="mai">Mai</option>
-              <option value="juin">Juin</option>
-              <option value="juillet">Juillet</option>
-              <option value="août">Août</option>
-              <option value="septembre">Septembre</option>
-              <option value="octobre">Octobre</option>
-              <option value="novembre">Novembre</option>
-              <option value="décembre">Décembre</option>
+             
             </select>
           </div>
-          <div class="table-wrap m-2 pt-4">
-            <table id="example" class="display table" style="width: 100%">
-              <thead>
-                <tr>
-                  <th scope="col">Nom</th>
-                  <th scope="col">Prenom</th>
-                  <th scope="col">Mois</th>
-                  <th scope="col">Ponctualité</th>
-                  <th scope="col">Sociabilite</th>
-                  <th scope="col">Respect fiche de poste</th>
-                  <th scope="col">Participatif</th>
-                  <th scope="col">Total</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
+          <div id="participatif">
+
           </div>
-        </section>
+          <div class="table-wrap m-2 pt-4">
+            <table id="example" class="display table table-bordered" style="width: 100%">
+                <thead>
+                  <tr>
+                    <th scope="col">Semaine</th>
+                    <th scope="col">Janvier</th>
+                    <th scope="col">Février</th>
+                    <th scope="col">Mars</th>
+                    <th scope="col">Avril</th>
+                    <th scope="col">Mai</th>
+                    <th scope="col">Juin</th>
+                    <th scope="col">Juillet</th>
+                    <th scope="col">Août</th>
+                    <th scope="col">Septembre</th>
+                    <th scope="col">Octobre</th>
+                    <th scope="col">Novembre</th>
+                    <th scope="col">Décembre</th>
+                  
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Semaine 1</th>
+                        
+                      </tr>
+                      <tr>
+                        <th scope="row">Semaine 2</th>
+                        
+                      </tr>
+                      <tr>
+                        <th scope="row">Semaine 3</th>
+                        
+                      </tr>
+                      <tr>
+                        <th scope="row">Semaine 4</th>
+                       
+                      </tr>
+                    </tbody>
+                </tbody>
+              </table>
+          </div>
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Evaluation <span></span> </h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form action="/evaluation/participatif" id="form-evaluation" method="post">
+                    <div class="form-group">
+                      <label for="recipient-name">Nom:</label>
+                      <input type="text" class="form-control" id="recipient-name" name="nom" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="participatif">Esprit participatif:</label>
+                      <input type="number" min="0"  max="5" class="form-control" id="participatif" name="participatif" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="input-group-text" for="inputGroupSelect02">Mois</label>
+                      <select name="mois" class="form-select" id="inputGroupSelect02">
+                        <option selected>Choisir...</option>
+                        <option value="janvier">Janvier</option>
+                        <option value="février">Février</option>
+                        <option value="mars">Mars</option>
+                        <option value="avril">Avril</option>
+                        <option value="mai">Mai</option>
+                        <option value="juin">Juin</option>
+                        <option value="juillet">Juillet</option>
+                        <option value="août">Août</option>
+                        <option value="septembre">Septembre</option>
+                        <option value="octobre">Octobre</option>
+                        <option value="novembre">Novembre</option>
+                        <option value="décembre">Décembre</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label class="input-group-text" for="inputGroupSelect02">Semaine</label>
+                      <select name="semaine" class="form-select" id="inputGroupSelect02">
+                        <option selected>Choisir...</option>
+                        <option value="0">Semaine 1</option>
+                        <option value="1">Semaine 2</option>
+                        <option value="2">Semaine 3</option>
+                        <option value="3">Semaine 4</option>
+                        
+                      </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                  </form>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
       </div>
-     
+      </section>
 
     </div>
 
     </div>
-    <script src="/js/gestionEvaluation.js">
-    // récupérez le select
-    </script>
+    <!-- <script src="/js/gestionEvaluation.js">
+
+    </script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script> -->
+
+    <script src="/js/nomEmployEvaluation.js"></script>
     <script>
       $('#exampleModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
@@ -180,38 +259,5 @@
         });
       });
     </script>
-    <script>
-      function tableau(tableau) {
-        $(tableau).DataTable({
-          pageLength: -1, // afficher tous les éléments sur une seule page
-          lengthChange: false, // ne pas afficher la liste déroulante du nombre d'éléments par page
-          paging: false, // désactiver la pagination
-          language: {
-            searchPlaceholder: "Rechercher...",
-            processing: "Traitement en cours...",
-            search: "",
-            info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-            infoEmpty: "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
-            infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-            infoPostFix: "",
-            loadingRecords: "Chargement en cours...",
-            zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
-            emptyTable: "Aucune donnée disponible dans le tableau",
-            paginate: {
-              first: "Premier",
-              previous: "Pr&eacute;c&eacute;dent",
-              next: "Suivant",
-              last: "Dernier"
-            },
-            aria: {
-              sortAscending: ": activer pour trier la colonne par ordre croissant",
-              sortDescending: ": activer pour trier la colonne par ordre décroissant"
-            }
-          }
-        });
-      }
-
-      $(document).ready(tableau('#example'));
-    </script>
-
-    <%- include('../../partials/footer')-%>
+    
+  <%- include('../../partials/footer')-%>

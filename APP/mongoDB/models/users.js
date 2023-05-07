@@ -7,9 +7,10 @@ const userSchema= new mongoose.Schema({
     rule:{type:String,required:true},
     password:{type:String,required:true},
     allMyEvaluation:[{type:mongoose.Schema.Types.ObjectId,ref:'Evaluation'}],
-    allEvaluationOnMe:[{type:mongoose.Schema.Types.ObjectId,ref:'Evaluation'}]
+    allEvaluationOnMe:[{type:mongoose.Schema.Types.ObjectId,ref:'Evaluation'}],
+    allMyObservationOnMe:[{type:mongoose.Schema.Types.ObjectId,ref:'Sociabilite'}],
 })
 
-const userModel = mongoose.model('User',userSchema);
+;const userModel = mongoose.model('User',userSchema);
 
 module.exports = userModel;

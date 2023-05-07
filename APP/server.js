@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use('/static',express.static(path.join(__dirname,'public')))
 app.use('/assets',express.static(path.join(__dirname,'public/assets')))
 app.use('/js',express.static(path.join(__dirname,'public/js')))
-console.log(path.join(__dirname,'static'))
+
 
 app.use(
       session({
@@ -57,15 +57,16 @@ app.get("/evaluation/",authentificate.isAuthenticated,(req,res)=>{
 app.get('/register',authentificate.isAuthenticated, (req, res) => {
   res.render("pages/admin/register",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom});
 })
+app.get('/delete',authentificate.isAuthenticated, (req, res) => {
+  res.render("pages/admin/delete",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom});
+})
+app.get('/participatif',authentificate.isAuthenticated, (req, res) => {
+  res.render("pages/admin/participation",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom});
+})
 
 app.get('/listEmploye',authentificate.isAuthenticated, (req, res) => {
   if(req.session.rule === "Administrateur"){
-    User.find({rule:"Employe"})
-    .then(employe=>{
-      res.render("pages/admin/listEmploye",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom,employe:employe})
-
-    })
-    .catch(error=>console.log(error))
+    res.render("pages/admin/listEmploye",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom})
   }else{
     res.render("pages/user/listEmploye",{NomUser:req.session.user.nom,PrenomUser:req.session.user.prenom});
   }

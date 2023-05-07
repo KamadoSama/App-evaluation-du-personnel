@@ -1,4 +1,4 @@
-fetch("http://localhost:8080/evaluation/affiche")
+fetch("http://localhost:8080/evaluation/observation")
   .then(response => response.json())
   .then(employes => {
     // console.log(employes)
@@ -10,7 +10,7 @@ fetch("http://localhost:8080/evaluation/affiche")
     const employeeEvaluationStatus = {};
     employes.forEach(employe => {
       employeeEvaluationStatus[employe._id] = {};
-      employe.allEvaluationOnMe.forEach(evaluation => {
+      employe.allMyObservationOnMe.forEach(evaluation => {
         employeeEvaluationStatus[employe._id][evaluation.mois] = true;
       });
     });
