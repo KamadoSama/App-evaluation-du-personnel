@@ -1,4 +1,3 @@
-
 fetch("http://localhost:8080/evaluation/evaluerChart")
 .then(reponse=>reponse.json())
 .then(reponse=>{
@@ -18,7 +17,7 @@ fetch("http://localhost:8080/evaluation/evaluerChart")
     const averageByMonth = Object.keys(evaluationsByMonth).map(month => {
     return {
         x: month,
-        y: Math.round(evaluationsByMonth[month].total / evaluationsByMonth[month].count)
+        y: parseInt(Math.round(evaluationsByMonth[month].total / evaluationsByMonth[month].count))
     };
     });
     let categories = []
@@ -128,4 +127,3 @@ fetch("http://localhost:8080/evaluation/evaluerChart")
       chart.render();
 })
 .catch(error => console.log(error));
-

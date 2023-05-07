@@ -1,7 +1,7 @@
 fetch("http://localhost:8080/user/listEmployeAdmin")
   .then(response => response.json())
   .then(employes => {
-    console.log(employes)
+    // console.log(employes)
     const table = document.querySelector("#example");
     const tbody = table.querySelector("tbody");
     tbody.innerHTML = "";

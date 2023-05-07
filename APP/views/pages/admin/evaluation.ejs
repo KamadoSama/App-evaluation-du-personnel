@@ -44,22 +44,26 @@
         </div>
 
         <ul class="list-unstyled components">
+           
           <li class="active">
-            <a href="/dashboard" aria-expanded="false">Dashboard</a>
-
+            <a href="/dashboard"  aria-expanded="false">Dashboard</a>
+          
           </li>
           <li>
-            <a href="/evaluation/">Evaluation</a>
+              <a href="/evaluation/">Voir les evaluations</a>
           </li>
           <li>
-            <a href="/listEmploye">Liste des employés</a>
+            <a href="/listEmploye" >Liste des employés</a>
           </li>
           <li>
-            <a href="/participatif">Participation</a>
+            <a href="/participatif">Note de participation</a>
           </li>
           <li>
-            <a href="/register">Ajouter un employé</a>
-          </li>
+              <a href="/register">Ajouter un employé</a>
+          </li>   
+          <li>
+            <a href="/delete">Supprimer un employé</a>
+           </li> 
         </ul>
 
         <ul class="list-unstyled CTAs">
@@ -99,6 +103,7 @@
           </div>
         </nav>
         <section class="text-center">
+          <p>Choisissez un mois vous verrez le nom des collaborateur ainsi que leurs notes pour ce mois </p>
           <div class="input-group mb-3">
             <label class="input-group-text" for="inputGroupSelect01">Mois</label>
             <select class="form-select" id="inputGroupSelect01">
@@ -135,71 +140,9 @@
               </tbody>
             </table>
           </div>
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Evaluation <span></span> </h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form action="/evaluation/creatEval" id="form-evaluation" method="post">
-                    <div class="form-group">
-                      <label for="recipient-name">Nom:</label>
-                      <input type="text" class="form-control" id="recipient-name" name="nom" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="ponctualite">Ponctualité:</label>
-                      <input type="number" class="form-control" id="ponctualite" name="ponctualite" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="sociabilite">Sociabilité:</label>
-                      <input type="number" class="form-control" id="sociabilite" name="sociabilite" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="respectFichePoste">Respect de la fiche de poste:</label>
-                      <input type="number" class="form-control" id="respectFichePoste" name="respectFichePoste"
-                        required>
-                    </div>
-                    <div class="form-group">
-                      <label for="participatif">Esprit participatif:</label>
-                      <input type="number" class="form-control" id="participatif" name="participatif" required>
-                    </div>
-                    <div class="form-group">
-                      <label class="input-group-text" for="inputGroupSelect01">Mois</label>
-                      <select name="mois" class="form-select" id="inputGroupSelect01">
-                        <option selected>Choisir...</option>
-                        <option value="janvier">Janvier</option>
-                        <option value="février">Février</option>
-                        <option value="mars">Mars</option>
-                        <option value="avril">Avril</option>
-                        <option value="mai">Mai</option>
-                        <option value="juin">Juin</option>
-                        <option value="juillet">Juillet</option>
-                        <option value="août">Août</option>
-                        <option value="septembre">Septembre</option>
-                        <option value="octobre">Octobre</option>
-                        <option value="novembre">Novembre</option>
-                        <option value="décembre">Décembre</option>
-                      </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Envoyer</button>
-                  </form>
-
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
+        </section>
       </div>
-      </section>
+     
 
     </div>
 

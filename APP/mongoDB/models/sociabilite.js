@@ -6,6 +6,8 @@ const sociabiliteSchema = mongoose.Schema({
     mois: {type: String, required:true},
     note:{type:Number, required: true} ,
     observation: {type: String, required:true},
+    allObservationForThisMonth:[]
+    
 })
 
 const sociabiliteModel = mongoose.model('Sociabilite',sociabiliteSchema)

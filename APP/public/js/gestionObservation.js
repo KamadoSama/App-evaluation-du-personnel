@@ -1,7 +1,7 @@
 const select = document.querySelector("#inputGroupSelect01");
 const table = document.querySelector("#example");
 const mois = document.querySelectorAll(".mois");
-console.log(mois)
+// console.log(mois)
 /*select.addEventListener("change", (e) => {
   const selectedMonth = e.target.value;
   console.log(selectedMonth)
@@ -21,7 +21,7 @@ console.log(mois)
 */
 select.addEventListener("change",(e)=>{
   const selectedMonth = e.target.value;
-  fetch("http://localhost:8080/evaluation/affiche")
+  fetch("http://localhost:8080/evaluation/observation")
   .then(reponse=>reponse.json())
   .then(employe=>{
     console.log(employe)
@@ -29,20 +29,16 @@ select.addEventListener("change",(e)=>{
     const tbody = table.querySelector("tbody");
     tbody.innerHTML = "";
     employe.forEach((employe) => {
-      employe.allEvaluationOnMe.forEach((evaluation)=>{
+      employe.allMyObservationOnMe.forEach((evaluation)=>{
         
         if(selectedMonth===evaluation.mois){
           const row = document.createElement("tr");  
           row.innerHTML = `
-       
-            <td>${employe.nom}</td>
-            <td> ${employe.prenom}</td>
-            <td>   ${evaluation.mois}</td>
-            <td>   ${evaluation.ponctualite}</td>
-            <td>   ${evaluation.sociabilite}</td>
-            <td>   ${evaluation.respectFichePoste}</td>
-            <td>   ${evaluation.participatif}</td>
-            <td>   ${evaluation.totalMois}</td>
+            <td><a type="button" class="btn1" data-toggle="modal" data-target="#exampleModal" data-whatever="${employe.nom} ${employe.prenom}">${employe.nom}</a></td>
+            <td> <a type="button" class="btn1" data-toggle="modal" data-target="#exampleModal" data-whatever="${employe.nom} ${employe.prenom}">${employe.prenom}</a></td>
+            <td>   <a type="button" class="btn1" data-toggle="modal" data-target="#exampleModal" data-whatever="${employe.nom} ${employe.prenom}">${evaluation.mois}</a></td>
+            <td>   <a type="button" class="btn1" data-toggle="modal" data-target="#exampleModal" data-whatever="${employe.nom} ${employe.prenom}">${evaluation.note}</a></td>
+            <td>   <a type="button" class="btn1" data-toggle="modal" data-target="#exampleModal" data-whatever="${employe.nom} ${employe.prenom}">${evaluation.observation}</a></td>
             `;
           tbody.appendChild(row);
           

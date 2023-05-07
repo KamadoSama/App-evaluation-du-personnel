@@ -45,22 +45,26 @@
         </div>
 
         <ul class="list-unstyled components">
+           
           <li class="active">
-            <a href="/dashboard" aria-expanded="false">Dashboard</a>
-
+            <a href="/dashboard"  aria-expanded="false">Dashboard</a>
+          
           </li>
           <li>
-            <a href="/evaluation/">Evaluation</a>
+              <a href="/evaluation/">Voir les evaluations</a>
           </li>
           <li>
-            <a href="/listEmploye">Liste des employés</a>
+            <a href="/listEmploye" >Liste des employés</a>
           </li>
           <li>
-            <a href="/participatif">Participation</a>
+            <a href="/participatif">Note de participation</a>
           </li>
           <li>
-            <a href="/register">Ajouter un employé</a>
-          </li>
+              <a href="/register">Ajouter un employé</a>
+          </li>   
+          <li>
+            <a href="/delete">Supprimer un employé</a>
+           </li> 
         </ul>
         <ul class="list-unstyled CTAs">
           <li>
@@ -141,12 +145,12 @@
                     </div>
                     <div class="form-group">
                       <label for="ponctualite">Ponctualité:</label>
-                      <input type="number" class="form-control" id="ponctualite" name="ponctualite" required>
+                      <input type="number" min="1" max="5" class="form-control" id="ponctualite" name="ponctualite" required>
                     </div>
                     
                     <div class="form-group">
                       <label for="respectFichePoste">Respect de la fiche de poste:</label>
-                      <input type="number" class="form-control" id="respectFichePoste" name="respectFichePoste"
+                      <input type="number" min="1" max="5" class="form-control" id="respectFichePoste" name="respectFichePoste"
                         required>
                     </div>
                     <!-- <div class="form-group">

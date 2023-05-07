@@ -124,5 +124,17 @@ exports.getAllUserForAdmin = async (req,res)=>{
   
       
 }
-exports.deleteUser = (req,res)=>{};
+exports.deleteUser = async (req,res)=>{
+  const { nom, prenom } = req.body;
+  try {
+    const user = await User.findOneAndDelete({ nom, prenom });
+    if (user===null) {
+      res.render('pages/admin/delete',{bad:'Aucun employé de ce nom...!'});
+    }else{
+      res.render('pages/admin/delete',{Supprimer:'Employé supprimer avec succès...!'});
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 exports.updateUser = (req,res)=>{};

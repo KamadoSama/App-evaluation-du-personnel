@@ -5,6 +5,7 @@ const router = express.Router()
 
 
 router.get('/affiche', controllerEvaluation.getAllEvalution)
+router.get('/observation', controllerEvaluation.getAllObservation)
 router.post('/afficheParticipatif', controllerEvaluation.getAllParticiatif)
 router.get('/evaluerChart',controllerEvaluation.getAllEvalutionForEvaluer)
 router.post('/creatEval',controllerEvaluation.createEvalution )

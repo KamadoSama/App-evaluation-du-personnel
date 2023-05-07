@@ -35,22 +35,26 @@
         </div>
 
         <ul class="list-unstyled components">
+           
           <li class="active">
-            <a href="/dashboard" aria-expanded="false">Dashboard</a>
-
+            <a href="/dashboard"  aria-expanded="false">Dashboard</a>
+          
           </li>
           <li>
-            <a href="/evaluation/">Evaluation</a>
+              <a href="/evaluation/">Voir les evaluations</a>
           </li>
           <li>
-            <a href="/listEmploye">Liste des employés</a>
+            <a href="/listEmploye" >Liste des employés</a>
           </li>
           <li>
-            <a href="/participatif">Participation</a>
+            <a href="/participatif">Note de participation</a>
           </li>
           <li>
-            <a href="/register">Ajouter un employé</a>
-          </li>
+              <a href="/register">Ajouter un employé</a>
+          </li>   
+          <li>
+            <a href="/delete">Supprimer un employé</a>
+           </li> 
         </ul>
 
         <ul class="list-unstyled CTAs">
@@ -114,7 +118,7 @@
           </table>
         </div>
         <div class=" table-wrap m-2 pt-4">
-          <div id="chart">
+          <div id="chart" class="mx-auto">
 
           </div>
         </div>
@@ -124,7 +128,7 @@
     <script src="/js/gestionListEmployeAdmin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdn.jsdelivr.net/npm/react-apexcharts"></script>
-    <script src="/js/chartUser.js"></script>
+    <script src="/js/chartAdmin.js"></script>
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

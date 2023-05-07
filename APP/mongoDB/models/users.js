@@ -8,9 +8,9 @@ const userSchema= new mongoose.Schema({
     password:{type:String,required:true},
     allMyEvaluation:[{type:mongoose.Schema.Types.ObjectId,ref:'Evaluation'}],
     allEvaluationOnMe:[{type:mongoose.Schema.Types.ObjectId,ref:'Evaluation'}],
-    allMyObservation:[{type:mongoose.Schema.Types.ObjectId,ref:'Sociabilite'}],
+    allMyObservationOnMe:[{type:mongoose.Schema.Types.ObjectId,ref:'Sociabilite'}],
 })
 
-const userModel = mongoose.model('User',userSchema);
+;const userModel = mongoose.model('User',userSchema);
 
 module.exports = userModel;
